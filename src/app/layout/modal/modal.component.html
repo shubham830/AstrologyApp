@@ -1,0 +1,26 @@
+<p class="talktoastro"><a (click)="triggerModal(modalData)" href="#" class="">Ask Any Question</a></p>
+<ng-template #modalData let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Ask Any Free Question</h4>
+
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p style="font-size: small;"> Get Accurate Answers to any problems From Expert Astrologers Trained By Sanjay Astro
+      Within 48 Hours.</p>
+    <div class="col-12">
+      <div class="row">
+        <div class="col-4"><input type="text" class="form-control" placeholder="Name"></div>
+        <div class="col-4"><input type="text" class="form-control" placeholder="Email"></div>
+        <div class="col-4"><input type="text" class="form-control" placeholder="Mobile No."></div>
+
+        <div class="col-12"> <br /><textarea class="form-control" style="    height: 105px;"
+            placeholder="Message"></textarea></div>
+        <div class="col-12"> <br /> <button type="button" class="btn btn-outline-primary"
+            style="width: 455px;">Submit</button></div>
+      </div>
+    </div>
+  </div>
+</ng-template>

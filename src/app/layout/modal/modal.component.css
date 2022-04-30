@@ -1,0 +1,11 @@
+.talktoastro {
+    background: #ea4906;
+    border-radius: 20px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+.talktoastro a {
+  color: #fff;
+}

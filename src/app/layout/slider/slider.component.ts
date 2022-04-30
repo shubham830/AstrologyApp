@@ -11,7 +11,7 @@ import * as $ from 'jquery';
 })
 export class SliderComponent implements OnInit {
   slides = [
-    { img: 'https://thumbs.dreamstime.com/z/astrology-night-sky-clock-42984888.jpg' },
+    { img: 'https://thumbs.dreamstime.com/z/astrology-night-sky-clock-42984888.jpg'  },
     { img: 'https://media.gettyimages.com/photos/zodiac-signs-inside-of-horoscope-circle-astrology-in-the-sky-with-picture-id1199916946?s=2048x2048' },
     { img: 'https://media.gettyimages.com/vectors/occult-hand-vector-id165759771?s=2048x2048' },
     { img: 'https://thumbs.dreamstime.com/z/astrology-27216124.jpg' },
