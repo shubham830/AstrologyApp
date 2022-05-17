@@ -1,0 +1,11 @@
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+ 
+.modal
+{
+  overflow-y: scroll;
+}
+.modal-header {
+
+  border-bottom: 0px solid #dee2e6;
+}

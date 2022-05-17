@@ -11,4 +11,10 @@ body .slick-next {
   background: grey !important;
   z-index: 100;
 }
-
+.slick-prev {
+  left: -15px;
+}
+.slick-prev:before, .slick-next:before {
+  
+  font-size: 42px;
+}
