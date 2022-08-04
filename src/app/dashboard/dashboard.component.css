@@ -109,7 +109,7 @@
     position: fixed;
     top: 0;
     left: -300px;
-    z-index: 999;
+    z-index: 1020;
   }
   
   .sidebar-wrapper ul {
@@ -316,7 +316,7 @@
   .sidebar-footer > a {
     flex-grow: 1;
     text-align: center;
-    height: 30px;
+    height: 40px;
     line-height: 30px;
     position: relative;
   }
@@ -490,10 +490,10 @@
   }
   .float {
     position:fixed;
-    width:60px;
-    height:60px;
-    bottom:40px;
-    right:40px;
+    width:37px;
+    height:41px;
+    bottom:8px;
+    right:3px;
     background-color:#25d366;
     color:#FFF;
     border-radius:50px;
@@ -502,6 +502,56 @@
     box-shadow: 2px 2px 3px #999;
     z-index:100;
   }
-  .my-float{
-    margin-top:16px;
+  .facebook {
+    position:fixed;
+    width:37px;
+    height:41px;
+    bottom:49px;
+    right:3px;
+    background: #3B5998;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    font-size:30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index:100;
   }
+  .instagram {
+    position:fixed;
+    width:37px;
+    height:43px;
+    bottom:93px;
+    right:3px;
+    background: #d6249f;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    font-size:30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index:100;
+  }
+  .twitter {
+    position:fixed;
+    width:37px;
+    height:43px;
+    bottom:138px;
+    right:3px;
+    background: #1DA1F2;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    font-size:30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index:100;
+  }
+  .my-float{
+    margin-top:8px;
+  }
+  a:hover {
+    cursor:pointer;
+   }
+   .headerclass{
+
+   }

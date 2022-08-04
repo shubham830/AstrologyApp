@@ -1,0 +1,45 @@
+<p>order works!</p>
+<div class="col-md-12">
+    <div class="card card-container">
+        <form [formGroup]="orderForm" (ngSubmit)="onSubmit(orderForm.value)">
+            <div class="form-group">
+                <div class="alert alert-danger" role="alert" *ngIf="error">Payment failed: {{ error }}</div>
+                <div class="alert alert-success" role="alert" *ngIf="paymentId">Payment Success. Payment ID: {{
+                    paymentId }}</div>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input formControlName="userName" type="userName" class="form-control" id="id_userName " required
+                    minlength="3" maxlength="20">
+            </div>
+            <div class="form-group">
+                <label for="id_email" class="form-label">Email address</label>
+                <input formControlName="email" [class.is-invalid]="emailField.touched && emailField.invalid"
+                    type="email" class="form-control" id="id_email">
+                <div *ngIf="emailField.touched && emailField.hasError('required')" class="d-block invalid-feedback">
+                    Please
+                    provide a Email.</div>
+                <div *ngIf="emailField.touched && emailField.hasError('email')" class="d-block invalid-feedback">Email
+                    address is
+                    not valid</div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label> <input type="number" class="form-control" name="phone" required
+                    minlength="10" maxlength="10" />
+                <!-- <div class="alert alert-danger" role="alert" *ngIf="f.submitted && phone.invalid">
+                    <div *ngIf="phone.errors.required">Phone is required</div>
+                    <div *ngIf="phone.errors.minlength || phone.errors.maxlength">Phone must be 10 digits</div>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount</label> <input type="number" class="form-control" name="amount" required />
+                <!-- <div class="alert alert-danger" role="alert" *ngIf="f.submitted && amount.invalid">
+                    <div *ngIf="amount.errors.required">Amount is required</div>
+                </div> -->
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block">Pay</button>
+            </div>
+        </form>
+    </div>
+</div>

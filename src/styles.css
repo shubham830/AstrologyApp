@@ -2,3 +2,17 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+.button-set-box button.btn.btn-primary {
+    padding: 5px 15px;
+     border-radius: 50px;
+     background: #3BAFDA;
+     color: #fff;
+     text-align: center;
+    border: 1px solid #3BAFDA;
+    display: inline-block;
+     cursor: pointer;
+     font-size: 14px;
+     outline: none;
+     margin-right: 10px;
+     margin-top: 10px;
+   }

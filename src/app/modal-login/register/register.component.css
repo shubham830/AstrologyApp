@@ -1,0 +1,8 @@
+.modal
+{
+  overflow-y: scroll;
+}
+.modal-header {
+
+  border-bottom: 0px solid #dee2e6;
+}

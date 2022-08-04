@@ -6,22 +6,31 @@ import { AppComponent } from './app.component';
 
 import { LayoutModule } from './layout/layout.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-
-import {FooterComponent} from './layout/footer/footer.component';
-
-import {HeaderComponent} from './layout/header/header.component';
+import { ModalLoginModule } from './modal-login/modal-login.module';
+import { FooterComponent} from './layout/footer/footer.component';
+import { HeaderComponent} from './layout/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GalleryComponent } from './gallery/gallery.component';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { CartComponent } from './cart/cart.component';
+import { OrderComponent } from './order/order.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomerProfileComponent } from './profile/customer-profile/customer-profile.component';
+import { RouterModule } from '@angular/router'
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent,FooterComponent,HeaderComponent
+    AppComponent,FooterComponent,HeaderComponent, GalleryComponent, ProductListComponent, CartComponent, OrderComponent, CustomerProfileComponent, 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LayoutModule,
-    DashboardModule,HttpClientModule
-    
+    DashboardModule,HttpClientModule,
+    ReactiveFormsModule,FormsModule,ModalLoginModule,RouterModule
   ],
   
   providers: [],

@@ -1,0 +1,92 @@
+<p>customer-profile works!</p>
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-4">
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <!-- Profile picture image-->
+                    <img class="img-account-profile rounded-circle mb-2" width="186px" src="{{imageUrl}}" alt="">
+                    <!-- Profile picture help block-->
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <!-- Profile picture upload button-->
+                    <input #Image type="file" (change)="handleFileInput($event)" />
+                    <br>
+                    <!-- <img width="100%" *ngIf="imageUrl" [src]="imageUrl" class="image"> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                    <form [formGroup]="accountDetailsForm" (ngSubmit)="accountDetailsUpdate(accountDetailsForm.value) ">
+                        <!-- Form Group (username)-->
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputFullName">Full Name</label>
+                                <input class="form-control" formControlName="fullname"
+                                    [class.is-invalid]="fullnameField.touched " id="inputFullName" type="text"
+                                    placeholder="Enter your first name" value="">
+                                <div *ngIf="fullnameField.touched && fullnameField.hasError('required')"
+                                    class="d-block invalid-feedback">
+                                    Please
+                                    provide a Name.</div>
+                            </div>
+                            <!-- Form Group (last name)-->
+                            <div class="col-md-6">
+                                <label for="id_email" class="form-label">Email address</label>
+                                <input formControlName="email"
+                                    [class.is-invalid]="emailField.touched && emailField.invalid"
+                                    placeholder="Enter your email" type="email" class="form-control" id="id_email">
+                                <div *ngIf="emailField.touched && emailField.hasError('required')"
+                                    class="d-block invalid-feedback">
+                                    Please
+                                    provide a Email.</div>
+                                <div *ngIf="emailField.touched && emailField.hasError('email')"
+                                    class="d-block invalid-feedback">Email
+                                    address is
+                                    not valid</div>
+                            </div>
+                        </div>
+                        <!-- Form Row        -->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputPhone">Phone number</label>
+                                <input class="form-control" formControlName="phonenumber"
+                                    [class.is-invalid]="phonenumberField.touched " id="inputPhone" type="tel"
+                                    placeholder="Enter your phone number" value="">
+                                <div *ngIf="phonenumberField.touched && phonenumberField.hasError('required')"
+                                    class="d-block invalid-feedback">
+                                    Please
+                                    provide a Phone.</div>
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputAddress">Permanent Address</label>
+                                <input class="form-control" formControlName="address"
+                                    [class.is-invalid]="addressField.touched " id="inputAddress" type="tel"
+                                    placeholder="Enter your Permanent" value="">
+                                <div *ngIf="addressField.touched && addressField.hasError('required')"
+                                    class="d-block invalid-feedback">
+                                    Please
+                                    provide address <Address></Address>.</div>
+                            </div>
+                        </div>
+                        <!-- Form Group (email address)-->
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary" [disabled]="accountDetailsForm.invalid" type="submit">Save
+                            changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

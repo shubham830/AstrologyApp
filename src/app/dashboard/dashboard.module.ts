@@ -6,15 +6,27 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 
-
-import { ModalLoginComponent } from '../layout/modal-login/modal-login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserProfileComponent } from '../layout/user-profile/user-profile.component';
+import { GalleryComponent  }   from '../gallery/gallery.component'
+import { ModalComponent }   from '../layout/modal/modal.component'
+import { ProductListComponent} from '../product/product-list/product-list.component'
+import { Routes, RouterModule } from '@angular/router';
+import { CartComponent } from '../cart/cart.component';
+import { OrderComponent } from '../order/order.component';
+import { CustomerProfileComponent } from '../profile/customer-profile/customer-profile.component';
+import { AddProductComponent } from '../product/add-product/add-product.component';
+import { LoginComponent } from '../modal-login/login/login.component';
+import { RegisterComponent } from '../modal-login/register/register.component';
+import { ForgotpasswordformComponent } from '../modal-login/forgotpasswordform/forgotpasswordform.component'
+import { ClarityModule } from '@clr/angular';
+import { BrowserModule } from '@angular/platform-browser';
 
-
+  import { ResetpasswordComponent  } from '../modal-login/resetpassword/resetpassword.component';
 @NgModule({
   declarations: [
     DashboardComponent,
-    ModalLoginComponent
+   UserProfileComponent,AddProductComponent,LoginComponent,ForgotpasswordformComponent,RegisterComponent,ResetpasswordComponent
   ],
   exports: [DashboardComponent],
 
@@ -23,7 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     BrowserAnimationsModule,
     SlickCarouselModule,
-    ReactiveFormsModule, FormsModule,
+    ReactiveFormsModule, FormsModule, ClarityModule,BrowserModule,RouterModule
   ]
 })
 export class DashboardModule { }

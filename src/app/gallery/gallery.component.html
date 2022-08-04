@@ -1,0 +1,48 @@
+
+
+
+ <main> <h2 class="text-center">Gallery</h2>
+    <br>
+ <div class="gallery">
+    
+   <figure *ngFor="let image of galleryImages" >
+     <img src={{image}} alt="a brunette girl with a brown blouse and gold earrings tying her hair " title="Photo by Hanna for Unsplash">
+   </figure>
+
+ </div>
+ </main>
+ 
+<!-- Modal -->
+<!-- <div class="view-candidate-poupup create-submit-pop" *ngIf="IsShowSaveSubmit">
+  <div class="view-candidate-wrapper">
+    <div class="close-button">
+      <span class="material-icons" (click)="OnShowSaveSubmit(false)">X</span>
+    </div>
+    <div class="view-candidate-title">
+      <span>Update Submittals</span>
+    </div>-->
+    <!-- <div class="view-candidate-container"> -->
+      <!-- <app-save-submittal (OnClose)="OnCloseSaveSubmittals()" (OnMessageUpdate)="OnMessageUpdate()" [JobSubmittal]="jobSelSubmittal" [CandSubmittal]="candSelSubmittal"></app-save-submittal> -->
+    <!-- </div>
+  </div> -->
+<!--</div> -->
+
+<!-- <div class="view-candidate-confirm" *ngIf="IsShowConfirmDecline">
+  <div class="view-candidate-wrapper">
+    <div class="close-button">
+      <span class="material-icons" (click)="IsShowConfirmDecline=false;">X</span>
+    </div>
+    <div class="view-candidate-title">Confirm Decline</div>
+    <div class="view-candidate-container">
+
+      Are you sure you want to decline {{CandSubmittal.FirstName}} {{CandSubmittal.LastName}} for {{JobSubmittal.JobTitle}}?
+
+      <div class="text-center button-set-box">
+        <button class="btn btn-primary" (click)="IsShowConfirmDecline=false; IsShowConfirmDeclineMsg=true;">Yes</button>
+        <button class="btn btn-danger" (click)="IsShowConfirmDecline=false">Back</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+ 
+ <!-- not the best code, but made with love and excitement to learn and make even more great stuff, thanks for passing by :-) -->
