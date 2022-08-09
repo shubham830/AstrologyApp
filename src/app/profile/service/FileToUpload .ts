@@ -1,5 +1,5 @@
 export class FileToUpload {
-    userId:number = 0;
+    id:number = 0;
     userName:string = '';
     fileName: string = "";
     fileSize: number = 0;

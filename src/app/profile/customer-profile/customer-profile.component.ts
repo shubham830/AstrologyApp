@@ -32,21 +32,19 @@ export class CustomerProfileComponent implements OnInit {
       phonenumber: new FormControl('', [Validators.required,]),
       address: new FormControl('', [Validators.required,]),
     })
-
+    
     this.customerProfileService.getImage(this.user).subscribe(
       data => {
         console.log(data);
-        this.imageUrl = 'data:image/jpg;base64,' + data;
+        this.imageUrl = 'data:image/png;base64,' + data;
       },
       error => {
-
       });
 
   }
 
 
   handleFileInput(event: Event) {
-    debugger
     const target = event.target as HTMLInputElement;
     const file: File = (target.files as FileList)[0];
     let file1 = new FileToUpload();
@@ -55,7 +53,7 @@ export class CustomerProfileComponent implements OnInit {
     file1.fileSize = file.size;
     file1.fileType = file.type;
     file1.lastModifiedTime = file.lastModified;
-    file1.userId = this.user.userid;
+    file1.id = this.user.userid;
     file1.userName = this.user.username;
     //Show image preview
     let reader = new FileReader();

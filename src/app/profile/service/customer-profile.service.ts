@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Login } from 'src/app/modal-login/service/login';
 import { Register } from 'src/app/modal-login/service/Register';
 import { Accountdetails } from './customer-details';
 import { FileToUpload } from './FileToUpload ';
@@ -14,7 +15,7 @@ export class CustomerProfileService {
   header: any;
 
   constructor(private http: HttpClient) {
-    this.Url = 'https://localhost:44317/Api/login/';
+    this.Url = 'https://localhost:44398/Api/login/';
     const headerSettings: { [name: string]: string | string[]; } = {};
     this.header = new HttpHeaders(headerSettings);
   }
@@ -31,7 +32,7 @@ export class CustomerProfileService {
     return this.http.post<FileToUpload>(this.Url + 'uploadImge/', theFile, httpOptions);
   }
 
-  getImage(register: Register) {
+  getImage(register: any) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post<Accountdetails[]>(this.Url + 'GetFiles/', register, httpOptions)
   }

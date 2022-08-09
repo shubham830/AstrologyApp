@@ -12,7 +12,7 @@ import { NavigationEvent } from '@ng-bootstrap/ng-bootstrap/datepicker/datepicke
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  public userId: number | undefined;
+  public Id: number | undefined;
   public username: string | undefined
   public userimg: string | undefined
   public userrole: string | undefined
@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
    
   }
   imageSrc = '~/../assets/FB_IMG_1650791485531.jpg';
+  
   ngOnInit(): void {
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
@@ -79,11 +80,11 @@ export class DashboardComponent implements OnInit {
   toggleMenu() {
     $(".page-wrapper").removeClass("toggled");
     this.slidershow = false;
-    let userid = this.userId
+    let id = this.Id
     let username = this.username
     let navigationExtras: NavigationExtras = {
       state: {
-        userid: userid,
+        id: id,
         username: username
       }
     };
@@ -92,28 +93,17 @@ export class DashboardComponent implements OnInit {
   }
 
   public doSomething(date: any): void {
-    console.log(date);
+    debugger
     if (date == "sticky-top") {
-      console.log(date.class);
       this.isheadersticky = ""
     }
     else if (date == "") {
       this.isheadersticky = "sticky-top"
     } else {
       this.username = date.UserName
-      this.userId = date.UserId
-      console.log('Picked date: ', date.UserId);
-
-      this.customerProfileService.getImage(date).subscribe(
-        data => {
-          console.log(data);
-          this.imageSrc = 'data:image/jpg;base64,' + data;
-        },
-        error => {
-
-        });
+      this.Id = date.id
+      this.imageSrc = 'data:image/png;base64,'+ date.image
     }
-
   }
 }
 

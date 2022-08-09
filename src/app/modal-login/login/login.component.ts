@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LocalService } from 'src/app/localStorage/local.service';
+import { CustomerProfileService } from 'src/app/profile/service/customer-profile.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
   btnForgot: boolean = true;
   isheadername: string = "Log In";
   isForgot: boolean = false;
-  constructor(private loginService: LoginService, public router: Router,private localStore: LocalService) { }
+  constructor(private loginService: LoginService, public router: Router,private localStore: LocalService, private customerProfileService: CustomerProfileService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -63,6 +64,7 @@ export class LoginComponent implements OnInit {
           console.log('decrpted data ', this.localStore.getData('login'));
           this.closebutton.nativeElement.click();
           this.invalidPassword = '';
+          this.loginForm.reset();
         }
       },
       error => {
@@ -90,6 +92,7 @@ export class LoginComponent implements OnInit {
 
   }
   onheader(register: any) {
+    
     register.class = "sticky-top"
     this.userDetails.emit(register.class)
   }
