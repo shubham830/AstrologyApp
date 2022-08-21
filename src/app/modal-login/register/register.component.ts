@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/modal-login/service/login.service';
@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class RegisterComponent implements OnInit {
   isBtnContinueVisible = true;
   isBtnOtpVisible = false;
-  isotpInputBoxVisible = false;
+  isotpInputBoxVisible = true;
   UserForm: any;
   massage:string | undefined;
   title = 'bootstrap-popup';
@@ -22,7 +22,8 @@ export class RegisterComponent implements OnInit {
   data: boolean | undefined;
   closebutton: any;
   display: any;
-
+  isRegisterItem = true;
+  @Output() isHeaderTitle : EventEmitter<string> = new EventEmitter();
   constructor(private loginService: LoginService, public router:Router) { 
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -68,6 +69,8 @@ export class RegisterComponent implements OnInit {
         console.log(massage);
         Swal.fire(massage.toString());
         if(massage.toString() == "your otp has been send successfully to your e-mail address") {
+          this.isHeaderTitle.emit("OTP Verification");
+          this.isRegisterItem = false;   
           this.isBtnOtpVisible = true;
           this.isotpInputBoxVisible = true;
           this.isBtnContinueVisible = false;

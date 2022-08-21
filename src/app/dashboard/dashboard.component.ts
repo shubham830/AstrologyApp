@@ -6,6 +6,7 @@ import { Register } from '../modal-login/service/Register';
 import { CustomerProfileService } from '../profile/service/customer-profile.service';
 import { filter } from 'rxjs/operators';
 import { NavigationEvent } from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-view-model';
+import { NotificationService } from '../notification.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -22,7 +23,7 @@ export class DashboardComponent implements OnInit {
   isheadersticky: string = "sticky-top";
   
   activatedRoute: any;
-  constructor(public router: Router, private customerProfileService: CustomerProfileService) {
+  constructor(public router: Router, private customerProfileService: CustomerProfileService,private notifyService : NotificationService) {
              
   
    
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit {
   imageSrc = '~/../assets/FB_IMG_1650791485531.jpg';
   
   ngOnInit(): void {
+    this.notifyService.showSuccess("Data shown successfully !!", "laratutorials.com")
     this.router.events.subscribe(val => {
       if (val instanceof NavigationEnd) {
         if(val.url == "/"   ) {

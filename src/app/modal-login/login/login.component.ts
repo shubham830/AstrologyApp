@@ -108,4 +108,8 @@ export class LoginComponent implements OnInit {
     this.modalFooterMessageDisplay = "Already have account ?";
     this.modalFooterBtnMessage = "Login";
   }
+  receiveHeaderTitle(data:any) {
+    this.isheadername = data;
+    console.log(data);
+    }
 }

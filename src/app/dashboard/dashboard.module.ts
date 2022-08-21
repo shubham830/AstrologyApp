@@ -21,7 +21,7 @@ import { RegisterComponent } from '../modal-login/register/register.component';
 import { ForgotpasswordformComponent } from '../modal-login/forgotpasswordform/forgotpasswordform.component'
 import { ClarityModule } from '@clr/angular';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ToastrModule } from 'ngx-toastr';
   import { ResetpasswordComponent  } from '../modal-login/resetpassword/resetpassword.component';
 @NgModule({
   declarations: [
@@ -34,7 +34,7 @@ import { BrowserModule } from '@angular/platform-browser';
     CommonModule,
     NgbModule,
     BrowserAnimationsModule,
-    SlickCarouselModule,
+    SlickCarouselModule,BrowserAnimationsModule,
     ReactiveFormsModule, FormsModule, ClarityModule,BrowserModule,RouterModule
   ]
 })
