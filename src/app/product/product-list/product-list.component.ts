@@ -1,5 +1,7 @@
 import { Component, OnInit, Output ,EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
+import { CartService } from 'src/app/cart/service/cart.service';
+import { Product } from '../service/product';
 
 
 @Component({
@@ -33,14 +35,16 @@ productDetails:any = [
   }
 
 ];
+  
 
-  constructor(public router:Router) { }
+  constructor(public router:Router,public cartService:CartService) { }
 
   ngOnInit(): void {
   }
-  addItem(item:any){
-   console.log("cart details",item)
-   this.cartDetails.emit(item);
+  addItem(product:any){
+   console.log("cart details",product)
+   this.cartDetails.emit(product);
+   this.cartService.addToCart(product);
    this.router.navigate(['/order']);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { LoginService } from '../service/login.service';
 import { Register } from '../service/Register';
@@ -22,7 +23,10 @@ function passwordMatchValidator(password: string): Validators {
 export class ResetpasswordComponent implements OnInit {
   resetPassword!: FormGroup;
   custid!: number;
-  constructor(private fb: FormBuilder, private loginService: LoginService, private route: ActivatedRoute) {
+  loading:boolean = false
+  constructor(private fb: FormBuilder, private loginService: LoginService, 
+    private route: ActivatedRoute,
+    private toastrService: ToastrService) {
     this.resetPassword = this.fb.group({
       password: ['', [
         Validators.required,
@@ -53,9 +57,12 @@ export class ResetpasswordComponent implements OnInit {
 
   onFormSubmit(register: Register) {
     register.Id = this.custid;
+    this.loading = true;
     this.loginService.resetPassword(register).subscribe(
       (massage) => {
-        Swal.fire(massage.toString());
+        this.loading = false;
+        this.toastrService.success(massage.toString());
+       
       });
   }
 }

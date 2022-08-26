@@ -6,8 +6,14 @@
     </a>
     <div class="col-12">
       <div class="row">
-        <div class="col-9"></div>
-        <div class="col-3"> <app-login  (userDetails)="doSomething($event)"></app-login></div>
+        <div class="col-10">
+        
+      </div>
+        <div class="col-1"> <app-login  (userDetails)="doSomething($event)"></app-login> </div>
+        <div class="col-1">  {{(items$ | async)?.length}} <span class="fa-stack fa-1x" data-count ="1">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+        </span></div>
       </div>
 
     </div>
@@ -51,7 +57,7 @@
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-         <a ><img class="img-responsive " style="  border-radius: 50%;height: 68px;" src="{{imageSrc}}" routerLink="/user-profile" alt="User picture"></a> 
+         <a ><img class="img-responsive " style="  border-radius: 50%;height: 68px;" src="{{imageSrc}}"  alt="User picture"></a> 
         </div>
         <a><div class="user-info"  (click)="toggleMenu()">
           <span class="user-name">
@@ -235,7 +241,7 @@
         <i class="fa fa-twitter"></i>
         <!-- <span class="badge-sonar"></span> -->
       </a>
-      <a href="#">
+      <a routerLink="#" (click)="logout()">
         <i class="fa fa-power-off"></i>
       </a>
     </div>
@@ -354,5 +360,7 @@
 <a href="https://twitter.com/PtSanjaySharm13?t=cK5lHO_qVx8YOvxe5TgMqQ&s=08" class="twitter" target="_blank">
   <i class="fa fa-twitter my-float"></i>
 </a>
-
+<div class="loading-overlay is-active" *ngIf="loading">
+  <span class="fa fa-spinner fa-3x fa-spin"></span>
+</div>
 <!-- page-wrapper -->

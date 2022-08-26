@@ -22,6 +22,10 @@ import { ForgotpasswordformComponent } from '../modal-login/forgotpasswordform/f
 import { ClarityModule } from '@clr/angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+
+
   import { ResetpasswordComponent  } from '../modal-login/resetpassword/resetpassword.component';
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     NgbModule,
     BrowserAnimationsModule,
-    SlickCarouselModule,BrowserAnimationsModule,
+    SlickCarouselModule,BrowserAnimationsModule, ToastrModule.forRoot({
+      timeOut: 15000, // 15 seconds
+      closeButton: true,
+      progressBar: true,
+    }),
     ReactiveFormsModule, FormsModule, ClarityModule,BrowserModule,RouterModule
   ]
 })

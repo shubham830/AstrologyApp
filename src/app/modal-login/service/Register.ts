@@ -7,4 +7,5 @@ export class Register {
     ContactNo:string | undefined;  
     Address:string | undefined  
     class:string |undefined
+    image:any
 } 

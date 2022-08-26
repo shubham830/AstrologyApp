@@ -2,21 +2,21 @@
 <h4 class="text-center">Product List</h4>
 <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
     <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-      <div class="col hp" *ngFor="let item of productDetails">
+      <div class="col hp" *ngFor="let product of productDetails">
         <div class="card h-100 shadow-sm">
           <a >
-            <img src={{item.img}} class="card-img-top" alt="product.title" />
+            <img src={{product.img}} class="card-img-top" alt="product.title" />
           </a>
           <div class="card-body">
             <div class="clearfix mb-3">
-              <span class="float-start badge rounded-pill bg-success">{{item.price}}</span>
+              <span class="float-start badge rounded-pill bg-success">{{product.price}}</span>
             </div>
             <h5 class="card-title">
-              <a target="_blank" href="#">{{item.description}} </a>
+              <a target="_blank" href="#">{{product.description}} </a>
             </h5>
   
             <div class="d-grid gap-2 my-4">
-              <button (click)="addItem(item)" class="btn btn-warning bold-btn">
+              <button (click)="addItem(product)" class="btn btn-warning bold-btn">
                 Add to cart
                 <i class="fa fa-shopping-cart"></i>
               </button>

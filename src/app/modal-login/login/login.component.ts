@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LocalService } from 'src/app/localStorage/local.service';
 import { CustomerProfileService } from 'src/app/profile/service/customer-profile.service';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
   title = 'bootstrap-popup';
   loginForm!: FormGroup;
   model: any = {};
+  data1: Register | undefined;
   isRegister: boolean = false;
   loginhide: boolean = true;
   modalFooterMessageDisplay: string = " Don't have account ?";
@@ -31,7 +34,12 @@ export class LoginComponent implements OnInit {
   btnForgot: boolean = true;
   isheadername: string = "Log In";
   isForgot: boolean = false;
-  constructor(private loginService: LoginService, public router: Router,private localStore: LocalService, private customerProfileService: CustomerProfileService) { }
+  loading: boolean = false;
+  constructor(private loginService: LoginService,
+    public router: Router,
+    private localStore: LocalService,
+    private customerProfileService: CustomerProfileService,
+    private toastrService: ToastrService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -51,24 +59,31 @@ export class LoginComponent implements OnInit {
   }
 
   onFormSubmit(login: Login) {
-    debugger;
-    this.loginService.login(login).subscribe(
-      data => {
-        console.log(data);
-        if (data == null) {
-          this.invalidPassword = 'Invalid Password try again';
-        } else {
-          this.router.navigate(['/product']);
-          this.userDetails.emit(data);
-          this.localStore.saveData('login', (data).toString());
-          console.log('decrpted data ', this.localStore.getData('login'));
-          this.closebutton.nativeElement.click();
-          this.invalidPassword = '';
-          this.loginForm.reset();
-        }
-      },
-      error => {
-      });
+    const loginDetails = localStorage.getItem('login');
+    if (loginDetails) {
+      this.toastrService.success('Already Login');
+    } else {
+      this.loading = true;
+      this.loginService.login(login).subscribe(
+        data => {
+          this.loading = false;
+          if (data == null) {
+            this.toastrService.error( 'Invalid Password try again');
+          } else {
+            
+            this.userDetails.emit(data);
+            this.localStore.saveData('login', JSON.stringify(data));
+            this.data1 = JSON.parse(this.localStore.getData('login'));
+            console.log('decrpted data ', this.data1?.UserName);
+            this.closebutton.nativeElement.click();
+            this.router.navigate(['/product-list']);
+            this.toastrService.success('Welcome to  ' + this.data1?.UserName);
+          }
+        },
+        error => {
+        });
+    }
+    
   }
 
   register(message: string) {
@@ -89,16 +104,18 @@ export class LoginComponent implements OnInit {
       this.modalFooterBtnMessage = "Login";
       this.btnForgot = false;
     }
-
   }
+
   onheader(register: any) {
-    
+    this.loginForm.reset();
     register.class = "sticky-top"
     this.userDetails.emit(register.class)
   }
+
   ismodalclose(register: any) {
     this.userDetails.emit("")
   }
+
   onforgotpassword(data: any) {
     this.isheadername = "Forgot you password ?"
     this.isRegister = false;
@@ -108,8 +125,12 @@ export class LoginComponent implements OnInit {
     this.modalFooterMessageDisplay = "Already have account ?";
     this.modalFooterBtnMessage = "Login";
   }
-  receiveHeaderTitle(data:any) {
+  
+  receiveHeaderTitle(data: any) {
     this.isheadername = data;
+    this.modalFooterMessageDisplay = "";
+    this.modalFooterBtnMessage = "";
     console.log(data);
-    }
+  }
+ 
 }

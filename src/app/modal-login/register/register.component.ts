@@ -1,9 +1,12 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { LocalService } from 'src/app/localStorage/local.service';
 import { LoginService } from 'src/app/modal-login/service/login.service';
 import { Register } from 'src/app/modal-login/service/Register';
 import Swal from 'sweetalert2';
+import { Email } from '../service/Email';
 
 @Component({
   selector: 'app-register',
@@ -13,18 +16,23 @@ import Swal from 'sweetalert2';
 export class RegisterComponent implements OnInit {
   isBtnContinueVisible = true;
   isBtnOtpVisible = false;
-  isotpInputBoxVisible = true;
+  isotpInputBoxVisible = false;
   UserForm: any;
-  massage:string | undefined;
+  massage: string | undefined;
   title = 'bootstrap-popup';
   registerForm!: FormGroup;
-  model : any={};
+  model: any = {};
   data: boolean | undefined;
   closebutton: any;
   display: any;
   isRegisterItem = true;
-  @Output() isHeaderTitle : EventEmitter<string> = new EventEmitter();
-  constructor(private loginService: LoginService, public router:Router) { 
+  loading = false;
+  isBtnOtpResend = false;
+  email!:Register ;
+  @Output() isHeaderTitle: EventEmitter<string> = new EventEmitter();
+  constructor(private loginService: LoginService,
+    private localStore: LocalService,
+    private toastrService: ToastrService, public router: Router) {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
@@ -47,34 +55,41 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+    
   }
 
-  onFormSubmit1(register:Register) {
-    debugger
-    let email= this.registerForm.controls['email'].value
+  onFormSubmit1(register: Register) {
+    this.loading = true;
+    let email = this.registerForm.controls['email'].value
     console.log(email);
     this.loginService.createUser(register).subscribe(
-      (massage)=> {
-        Swal.fire(massage.toString());
+      (massage) => {
+        this.loading = false;
+        this.toastrService.success( massage.toString());
+        // Swal.fire(massage.toString());
         this.data = true;
         this.closebutton.nativeElement.click();
       });
 
   }
 
-  continueBtn(register:Register) {
-    debugger
+  continueBtn(register: Register) {
+    this.loading = true;
+    this.localStore.saveData('Emailid', JSON.stringify(register));
     this.loginService.emailSendOtp(register).subscribe(
-      (massage)=> {
-        console.log(massage);
-        Swal.fire(massage.toString());
-        if(massage.toString() == "your otp has been send successfully to your e-mail address") {
+      (massage) => {
+        this.loading = false;
+        if (massage.toString() == "Your OTP has been send successfully to your e-mail address") {
+          this.toastrService.success(massage.toString());
           this.isHeaderTitle.emit("OTP Verification");
-          this.isRegisterItem = false;   
+          this.isRegisterItem = false;
           this.isBtnOtpVisible = true;
           this.isotpInputBoxVisible = true;
           this.isBtnContinueVisible = false;
-           this.timer(2);
+          this.timer(2);
+        } else {
+          this.toastrService.error(massage.toString());
         }
       });
   }
@@ -99,8 +114,30 @@ export class RegisterComponent implements OnInit {
 
       if (seconds == 0) {
         console.log("finished");
+        this.isBtnOtpVisible = false;
+        this.isBtnOtpResend = true;
         clearInterval(timer);
       }
     }, 1000);
+  }
+  btnResend() {
+    this.loading = true;
+    this.email = JSON.parse(this.localStore.getData('Emailid'))
+    this.loginService.emailSendOtp(this.email).subscribe(
+      (massage) => {
+        this.loading = false;
+        this.isBtnOtpVisible = true;
+        this.isBtnOtpResend = false;
+        this.localStore.removeData("Emailid")
+        this.toastrService.success( massage.toString());
+        if (massage.toString() == "Your OTP has been send successfully to your e-mail address") {
+          this.isHeaderTitle.emit("OTP Verification");
+          this.isRegisterItem = false;
+          this.isBtnOtpVisible = true;
+          this.isotpInputBoxVisible = true;
+          this.isBtnContinueVisible = false;
+          this.timer(2);
+        }
+      });
   }
 }

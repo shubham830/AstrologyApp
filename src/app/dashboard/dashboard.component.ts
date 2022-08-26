@@ -6,7 +6,11 @@ import { Register } from '../modal-login/service/Register';
 import { CustomerProfileService } from '../profile/service/customer-profile.service';
 import { filter } from 'rxjs/operators';
 import { NavigationEvent } from '@ng-bootstrap/ng-bootstrap/datepicker/datepicker-view-model';
-import { NotificationService } from '../notification.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+
+import { LocalService } from '../localStorage/local.service';
+import { ToastrService } from 'ngx-toastr';
+import { CartService } from '../cart/service/cart.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -21,33 +25,24 @@ export class DashboardComponent implements OnInit {
   userDetails1: any | undefined;
   currentRoute!: string;
   isheadersticky: string = "sticky-top";
-  
+  data1: Register | undefined;
+  loading:boolean = false;
+  imageSrc:any;
   activatedRoute: any;
-  constructor(public router: Router, private customerProfileService: CustomerProfileService,private notifyService : NotificationService) {
-             
-  
-   
+  items$ = this.cartService.items$  ;
+  constructor(public router: Router, public cartService:CartService,
+    private customerProfileService: CustomerProfileService,
+     private localStore: LocalService,
+     private toastrService: ToastrService,
+     private spinnerService: NgxSpinnerService) {
   }
-  imageSrc = '~/../assets/FB_IMG_1650791485531.jpg';
   
+
   ngOnInit(): void {
-    this.notifyService.showSuccess("Data shown successfully !!", "laratutorials.com")
-    this.router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        if(val.url == "/"   ) {
-          this.slidershow = true;
-        }
-        else{
-          this.slidershow = false;
-        }
-        
-      }
-    });
+    this.getLocalStorageData();
+    this.geturl();
+    // this.username = this.userDetails1;
     
-    
-    
-    this.username = this.userDetails1;
-    this.userrole = 'Astrology';
     $(".sidebar-dropdown > a").click(function () {
       $(".sidebar-submenu").slideUp(200);
       if (
@@ -81,7 +76,7 @@ export class DashboardComponent implements OnInit {
 
   toggleMenu() {
     $(".page-wrapper").removeClass("toggled");
-    this.slidershow = false;
+   
     let id = this.Id
     let username = this.username
     let navigationExtras: NavigationExtras = {
@@ -90,8 +85,19 @@ export class DashboardComponent implements OnInit {
         username: username
       }
     };
+    
+    if(this.userrole == 'Astrology') {
+     
+      this.router.navigate(['/user-profile']);
+      
+    }
+    else {
+     
+      this.router.navigate(['/profile-editor'], navigationExtras);
+    }
+    this.geturl();
     console.log(navigationExtras);
-    this.router.navigate(['/profile-editor'], navigationExtras);
+    
   }
 
   public doSomething(date: any): void {
@@ -105,6 +111,43 @@ export class DashboardComponent implements OnInit {
       this.username = date.UserName
       this.Id = date.id
       this.imageSrc = 'data:image/png;base64,'+ date.image
+      this.userrole = '';
+    }
+  }
+  logout() {
+    $(".page-wrapper").removeClass("toggled");
+    this.localStore.removeData('login');
+    this.getLocalStorageData();
+    this.toastrService.success('Logout Sucessfully !');
+    this.router.navigate(['/']);
+    
+  }
+ geturl(){
+  this.router.events.subscribe(val => {
+    if (val instanceof NavigationEnd) {
+      console.log('url',val.urlAfterRedirects);
+      if (val.url == "/") {
+        this.slidershow = true;
+      }
+      else {
+        this.slidershow = false;
+      }
+
+    }
+  });
+}
+  getLocalStorageData() {
+    const loginDetails = localStorage.getItem('login');
+    if (loginDetails) {
+      this.data1 = JSON.parse(this.localStore.getData('login'));
+      this.username = this.data1?.UserName
+      this.Id = this.data1?.Id
+      this.imageSrc = 'data:image/png;base64,' + this.data1?.image
+      this.userrole = '';
+    } else {
+      this.username = "Sanjay Shastri"
+      this.userrole = 'Astrology';
+      this.imageSrc  = '~/../assets/FB_IMG_1650791485531.jpg';
     }
   }
 }

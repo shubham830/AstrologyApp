@@ -1,18 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
 .button-set-box button.btn.btn-primary {
-    padding: 5px 15px;
-     border-radius: 50px;
-     background: #3BAFDA;
-     color: #fff;
-     text-align: center;
-    border: 1px solid #3BAFDA;
-    display: inline-block;
-     cursor: pointer;
-     font-size: 14px;
-     outline: none;
-     margin-right: 10px;
-     margin-top: 10px;
-   }
+  padding: 5px 15px;
+  border-radius: 50px;
+  background: #3BAFDA;
+  color: #fff;
+  text-align: center;
+  border: 1px solid #3BAFDA;
+  display: inline-block;
+  cursor: pointer;
+  font-size: 14px;
+  outline: none;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.loading-overlay {
+  display: none;
+  background: rgba(255, 255, 255, 0.7);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9998;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-overlay.is-active {
+  display: flex;
+}
+
+.code {
+  font-family: monospace;
+  /*   font-size: .9em; */
+  color: #dd4a68;
+  background-color: rgb(238, 238, 238);
+  padding: 0 3px;
+}

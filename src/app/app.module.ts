@@ -21,6 +21,7 @@ import { RouterModule } from '@angular/router'
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,FooterComponent,HeaderComponent, GalleryComponent, ProductListComponent, CartComponent, OrderComponent, CustomerProfileComponent, 

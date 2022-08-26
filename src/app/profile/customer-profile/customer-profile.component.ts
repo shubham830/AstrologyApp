@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocalService } from 'src/app/localStorage/local.service';
+import { Register } from 'src/app/modal-login/service/Register';
 import { Accountdetails } from '../service/customer-details';
 import { CustomerProfileService } from '../service/customer-profile.service';
 import { FileToUpload } from '../service/FileToUpload ';
@@ -19,13 +21,15 @@ export class CustomerProfileComponent implements OnInit {
   accountDetailsForm!: FormGroup;
   selectedFile: ImageSnippet | undefined;
   imageUrl = '~/../assets/user-profile-default.png'; http: any;
-
-  constructor(private customerProfileService: CustomerProfileService, public router: Router) {
+  data1: Register | undefined;
+  constructor(private customerProfileService: CustomerProfileService, public router: Router,private localStore: LocalService) {
     let user = this.router.getCurrentNavigation()?.extras.state;
     this.user = user
   }
 
   ngOnInit(): void {
+    this.data1 = JSON.parse(this.localStore.getData('login'));
+    this.imageUrl = 'data:image/png;base64,' + this.data1?.image;
     this.accountDetailsForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       fullname: new FormControl('', [Validators.required,]),
@@ -33,13 +37,13 @@ export class CustomerProfileComponent implements OnInit {
       address: new FormControl('', [Validators.required,]),
     })
     
-    this.customerProfileService.getImage(this.user).subscribe(
-      data => {
-        console.log(data);
-        this.imageUrl = 'data:image/png;base64,' + data;
-      },
-      error => {
-      });
+    // this.customerProfileService.getImage(this.user).subscribe(
+    //   data => {
+    //     console.log(data);
+    //     this.imageUrl = 'data:image/png;base64,' + data;
+    //   },
+    //   error => {
+    //   });
 
   }
 
