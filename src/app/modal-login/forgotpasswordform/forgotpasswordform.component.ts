@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
@@ -13,7 +13,7 @@ import { Register } from '../service/Register';
 export class ForgotpasswordformComponent implements OnInit {
   forgotpasswordForm!: FormGroup;
   data!: boolean;
-  closebutton: any;
+  @Output() closebtn: EventEmitter<string> = new EventEmitter();
   loading:boolean =false;
   constructor(private loginService: LoginService,private toastrService: ToastrService) { 
     this.forgotpasswordForm = new FormGroup({
@@ -24,6 +24,7 @@ export class ForgotpasswordformComponent implements OnInit {
     return this.forgotpasswordForm.get('email');
   }
   ngOnInit(): void {
+   
   }
   onFormSubmit(register:Register) {
     this.loading = true;
@@ -34,7 +35,7 @@ export class ForgotpasswordformComponent implements OnInit {
         this.loading = false;
         this.toastrService.success(message.toString());
         this.data = true;
-        this.closebutton.nativeElement.click();
+        this.closebtn.emit("close");
       });
 
   }

@@ -12,16 +12,18 @@
               <span class="float-start badge rounded-pill bg-success">{{product.price}}</span>
             </div>
             <h5 class="card-title">
-              <a target="_blank" href="#">{{product.description}} </a>
+              <a target="_blank" href="#">{{product.product_discription}} </a>
+              
             </h5>
   
             <div class="d-grid gap-2 my-4">
-              <button (click)="addItem(product)" class="btn btn-warning bold-btn">
+              <button id="addtocart"  (click)="addItem(product)" class="cd-add-to-cart">
                 Add to cart
                 <i class="fa fa-shopping-cart"></i>
               </button>
+              <a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Buy Now</a>
               <!-- <a  class="btn btn-warning bold-btn" >add to cart</a> -->
-              <a  class="btn btn-warning bold-btn" >View Card</a>
+           
   
             </div>
            

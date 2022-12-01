@@ -15,6 +15,7 @@ export class LocalService {
     return this.decrypt(data);
   }
   public removeData(key: string) {
+    
     localStorage.removeItem(key);
   }
 

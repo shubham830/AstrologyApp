@@ -27,17 +27,19 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 
   import { ResetpasswordComponent  } from '../modal-login/resetpassword/resetpassword.component';
+import { BlogPostModule } from '../Blog-post/blog-post.module';
+import { FooterComponent } from '../layout/footer/footer.component';
 @NgModule({
   declarations: [
     DashboardComponent,
-   UserProfileComponent,AddProductComponent,LoginComponent,ForgotpasswordformComponent,RegisterComponent,ResetpasswordComponent
+   UserProfileComponent,FooterComponent,AddProductComponent,LoginComponent,ForgotpasswordformComponent,RegisterComponent,ResetpasswordComponent
   ],
   exports: [DashboardComponent],
 
   imports: [
     CommonModule,
     NgbModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,BlogPostModule,
     SlickCarouselModule,BrowserAnimationsModule, ToastrModule.forRoot({
       timeOut: 15000, // 15 seconds
       closeButton: true,

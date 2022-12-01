@@ -13,7 +13,7 @@
       <div class="modal-header">
         <h5>{{isheadername}}</h5>
         <div class="close-button">
-          <span class="material-icons" #closebutton data-bs-dismiss="modal"  aria-label="Close">X</span>
+          <span class="material-icons" #closebutton (click)="ismodalclose($event)" data-bs-dismiss="modal"  aria-label="Close">X</span>
          
         </div>
        
@@ -48,10 +48,10 @@
           </form>
         </div>
         <ng-container *ngIf="isRegister">
-          <app-register (isHeaderTitle) = "receiveHeaderTitle($event)"></app-register>
+          <app-register (isHeaderTitle) = "receiveHeaderTitle($event)"  ></app-register>
         </ng-container>
         <div *ngIf="isForgot">
-          <app-forgotpasswordform ></app-forgotpasswordform>
+          <app-forgotpasswordform (closebtn) = "receiveHeaderTitle($event)"></app-forgotpasswordform>
         </div>
         &nbsp;
         <div class="col-12">

@@ -1,0 +1,12 @@
+@import '../node_modules/font-awesome/css/font-awesome.css'
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons button:first-child {
+  margin-right: 16px;
+}

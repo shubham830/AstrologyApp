@@ -2,10 +2,15 @@
   <div *ngIf="isRegisterItem">
     <div class="mb-3">
    
-      <input formControlName="userName" type="userName" class="form-control" placeholder="Full Name" id="id_userName">
-      <div *ngIf="userNameField.touched && userNameField.hasError('required')" class="d-block invalid-feedback">
-        Please
-        provide a Email.</div>
+      <input formControlName="userFirstName" type="userFirstName" class="form-control" placeholder="First Name" id="id_userFirstName">
+      <div *ngIf="userFirstNameField.touched && userFirstNameField.hasError('required')" class="d-block invalid-feedback">
+        Please provide a First Name.</div>
+    </div>
+    <div class="mb-3">
+   
+      <input formControlName="userLastName" type="userLastName" class="form-control" placeholder="Last Name" id="id_userLastName">
+      <div *ngIf="userLastNameField.touched && userLastNameField.hasError('required')" class="d-block invalid-feedback">
+        Please provide Last Name.</div>
     </div>
     <div class="mb-3">
   

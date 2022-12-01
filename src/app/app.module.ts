@@ -16,7 +16,9 @@ import { CartComponent } from './cart/cart.component';
 import { OrderComponent } from './order/order.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomerProfileComponent } from './profile/customer-profile/customer-profile.component';
-import { RouterModule } from '@angular/router'
+import { RouterModule } from '@angular/router';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
+import { UserAddressesComponent } from './user-addresses/user-addresses.component'
 
 
 
@@ -24,7 +26,7 @@ import { RouterModule } from '@angular/router'
 
 @NgModule({
   declarations: [
-    AppComponent,FooterComponent,HeaderComponent, GalleryComponent, ProductListComponent, CartComponent, OrderComponent, CustomerProfileComponent, 
+    AppComponent,HeaderComponent, GalleryComponent, ProductListComponent, CartComponent, OrderComponent, CustomerProfileComponent, ProgressBarComponent, UserAddressesComponent, 
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,19 @@
+<div class="container">
+	<form [formGroup]="postForm" (ngSubmit)="onSubmit(postForm.value)">
+		<div class="mb-3">
+			<input formControlName="Title" [class.is-invalid]="titleField.touched && titleField.invalid" type="title"
+				placeholder="Title" class="form-control" id="id_title" [(ngModel)]="contentdata.Title">
+			<div *ngIf="titleField.touched && titleField.hasError('required')" class="d-block invalid-feedback">
+				Please
+				provide a Title</div>
+		</div>
+		<div class="mb-3">
+			<angular-editor formControlName="Description" [placeholder]="'Enter text here...'" [config]="config"
+				[(ngModel)]="contentdata.Description"></angular-editor>
+		</div>
+		<div class="buttons">
+			<button [disabled]="postForm.invalid" type="submit" class="btn btn-primary">Save</button>
+			<!-- <button class="btn btn-outline-dark">Cancel</button> -->
+		</div>
+	</form>
+</div>

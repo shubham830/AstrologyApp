@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import * as $ from 'jquery';
 import { FormControl, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../service/login.service';
@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { LocalService } from 'src/app/localStorage/local.service';
 import { CustomerProfileService } from 'src/app/profile/service/customer-profile.service';
 import { ToastrService } from 'ngx-toastr';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -41,6 +42,8 @@ export class LoginComponent implements OnInit {
     private customerProfileService: CustomerProfileService,
     private toastrService: ToastrService) { }
 
+  
+
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -59,6 +62,7 @@ export class LoginComponent implements OnInit {
   }
 
   onFormSubmit(login: Login) {
+    debugger
     const loginDetails = localStorage.getItem('login');
     if (loginDetails) {
       this.toastrService.success('Already Login');
@@ -74,10 +78,10 @@ export class LoginComponent implements OnInit {
             this.userDetails.emit(data);
             this.localStore.saveData('login', JSON.stringify(data));
             this.data1 = JSON.parse(this.localStore.getData('login'));
-            console.log('decrpted data ', this.data1?.UserName);
+            console.log('decrpted data ', this.data1?.first_name);
             this.closebutton.nativeElement.click();
             this.router.navigate(['/product-list']);
-            this.toastrService.success('Welcome to  ' + this.data1?.UserName);
+            this.toastrService.success('Welcome to  ' + this.data1?.first_name +" "+this.data1?.last_name);
           }
         },
         error => {
@@ -127,10 +131,17 @@ export class LoginComponent implements OnInit {
   }
   
   receiveHeaderTitle(data: any) {
-    this.isheadername = data;
-    this.modalFooterMessageDisplay = "";
-    this.modalFooterBtnMessage = "";
-    console.log(data);
+    if(data =="close"){
+      this.closebutton.nativeElement.click();
+    }
+    else{
+      this.isheadername = data;
+      this.modalFooterMessageDisplay = "";
+      this.modalFooterBtnMessage = "";
+      console.log(data);
+    }
+   
+   
   }
  
 }

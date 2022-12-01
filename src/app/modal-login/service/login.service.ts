@@ -5,6 +5,7 @@ import { from, Observable } from 'rxjs';
 import { Register } from "../service/Register";
 import { Login } from '../service/login';
 import { Email } from './Email';
+import { CartItem } from 'src/app/cart/service/cartitem';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,10 @@ export class LoginService {
 
   login(login: Login) {
     debugger;
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    const httpOptions = { headers: new HttpHeaders({   'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  
+    }) };
     return this.http.post<Login[]>(this.Url + 'UserLogin', login, httpOptions);
   }
   
@@ -42,5 +46,12 @@ export class LoginService {
   resetPassword(email: Register) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post<Register[]>(this.Url + 'updatepassword/', email, httpOptions)
+  }
+  
+  addToCart1(cartItem: CartItem) {
+    
+
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.post<CartItem[]>(this.Url + 'addToCart/', cartItem, httpOptions)
   }
 }

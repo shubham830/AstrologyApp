@@ -1,6 +1,7 @@
 export class Register {  
     Id:number| undefined;
-    UserName:string | undefined;  
+    first_name:string | undefined;  
+    last_name:string |undefined;
     LoginName:string | undefined;  
     Password:string | undefined;  
     Email:string | undefined;  
@@ -8,4 +9,5 @@ export class Register {
     Address:string | undefined  
     class:string |undefined
     image:any
+    user_type:string | undefined;
 } 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -6,6 +6,7 @@ import { LocalService } from 'src/app/localStorage/local.service';
 import { LoginService } from 'src/app/modal-login/service/login.service';
 import { Register } from 'src/app/modal-login/service/Register';
 import Swal from 'sweetalert2';
+import { LoginComponent } from '../login/login.component';
 import { Email } from '../service/Email';
 
 @Component({
@@ -23,20 +24,24 @@ export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   model: any = {};
   data: boolean | undefined;
-  closebutton: any;
+  
   display: any;
   isRegisterItem = true;
   loading = false;
   isBtnOtpResend = false;
   email!:Register ;
+
   @Output() isHeaderTitle: EventEmitter<string> = new EventEmitter();
+  
+  
   constructor(private loginService: LoginService,
     private localStore: LocalService,
     private toastrService: ToastrService, public router: Router) {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
-      userName: new FormControl('', [Validators.required]),
+      userFirstName: new FormControl('', [Validators.required]),
+      userLastName: new FormControl('', [Validators.required]),
       otp: new FormControl('', [Validators.required]),
     })
   }
@@ -47,8 +52,11 @@ export class RegisterComponent implements OnInit {
   get passwordField(): any {
     return this.registerForm.get('password');
   }
-  get userNameField(): any {
-    return this.registerForm.get('userName');
+  get userFirstNameField(): any {
+    return this.registerForm.get('userFirstName');
+  }
+  get userLastNameField(): any {
+    return this.registerForm.get('userLastName');
   }
   get otpField(): any {
     return this.registerForm.get('otp');
@@ -56,9 +64,8 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     
-    
   }
-
+ 
   onFormSubmit1(register: Register) {
     this.loading = true;
     let email = this.registerForm.controls['email'].value
@@ -69,7 +76,7 @@ export class RegisterComponent implements OnInit {
         this.toastrService.success( massage.toString());
         // Swal.fire(massage.toString());
         this.data = true;
-        this.closebutton.nativeElement.click();
+        this.isHeaderTitle.emit("close");
       });
 
   }

@@ -1,6 +1,9 @@
 import { Component, OnInit, Output ,EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/cart/service/cart.service';
+import { CartItem } from 'src/app/cart/service/cartitem';
+import { LocalService } from 'src/app/localStorage/local.service';
+import { LoginService } from 'src/app/modal-login/service/login.service';
 import { Product } from '../service/product';
 
 
@@ -13,12 +16,12 @@ export class ProductListComponent implements OnInit {
 @Output() cartDetails = new EventEmitter<any>();
 
 
-productDetails:any = [
+productDetails:any= [
   {
     id: 1,
-    name: 'iPhone 6s',
-    description:'ASUS TUF FX505DT Gaming Laptop- 15.6", 120Hz Full HD, AMD Ryzen 5 R5-3550H Processor, GeForce GTX 1650 Graphics, 8GB DDR4, 256GB PCIe SSD, RGB Keyboard, Windows 10 64-bit - FX505DT-AH51',
-    img: 'https://m.media-amazon.com/images/I/81gK08T6tYL._AC_SL1500_.jpg',
+    name: 'GH',
+    product_discription:'H',
+    img: 'GH',
     price: 2500
   },
   {
@@ -35,16 +38,34 @@ productDetails:any = [
   }
 
 ];
-  
+  data1: any;
+  data2!: CartItem;
 
-  constructor(public router:Router,public cartService:CartService) { }
+  constructor(public router:Router,
+    private localStorage: LocalService,private cartService: LoginService) { }
 
   ngOnInit(): void {
   }
-  addItem(product:any){
-   console.log("cart details",product)
-   this.cartDetails.emit(product);
-   this.cartService.addToCart(product);
-   this.router.navigate(['/order']);
+  addItem(cartItem:CartItem){
+    debugger
+  //  console.log("cart details",cartItem)
+  //  this.cartDetails.emit(cartItem);
+   const loginDetails = localStorage.getItem('login');
+  //  if (loginDetails) {
+  //    this.data1 = JSON.parse(this.localStorage.getData('login'));
+ 
+  //   //  this.data2.id = product
+  //   cartItem.user_id = this.data1?.user_id
+  //  }
+  //  delete product['name'];
+  //  delete product['description'];
+  //  delete product['price'];
+  //  delete product['img'];
+   
+  
+   this.cartService.addToCart1(cartItem);
+   
+  //  this.router.navigate(['/order']);
   }
+  
 }

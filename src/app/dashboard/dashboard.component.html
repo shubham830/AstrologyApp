@@ -1,24 +1,28 @@
-
-<nav class=" shadow p-3  bg-white rounded " [ngClass]="{'sticky-top':isheadersticky == 'sticky-top'}" >
+<nav class=" shadow p-2 col-12 col-md-12  bg-white rounded " [ngClass]="{'sticky-top':isheadersticky == 'sticky-top'}">
   <div class="container">
     <a id="show-sidebar" class="btn btn-sm btn-dark">
       <i class="bi-justify"></i>
     </a>
-    <div class="col-12">
+    <div class="col-12 ">
       <div class="row">
-        <div class="col-10">
+        <div class="col-6 col-md-9">
         
-      </div>
-        <div class="col-1"> <app-login  (userDetails)="doSomething($event)"></app-login> </div>
-        <div class="col-1">  {{(items$ | async)?.length}} <span class="fa-stack fa-1x" data-count ="1">
-          <i class="fa fa-circle fa-stack-2x"></i>
-          <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-        </span></div>
+        </div>
+        <div class="col-3 col-md-1" *ngIf="isloginbtn">
+          <app-login (userDetails)="doSomething($event)"></app-login>
+        </div>
+        <div class="col-1 col-md-1"><div><i class="fa fa-home" routerLink="/" (click)="home()" aria-hidden="true"></i> </div> </div>
+        <div class="col-2 col-md-1"> <a style="color: black;" routerLink="/cart"> <span class="fa-stack fa-1x data"
+              [attr.data-count]="(items$ | async)?.length || count">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+            </span></a></div>
+         
       </div>
 
     </div>
-    
-   
+
+
     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
       aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -50,91 +54,53 @@
   <nav id="sidebar" class="sidebar-wrapper">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a >Sanjay Astro{{userDetails1}}</a>
-         <div id="close-sidebar">
+        <a>Sanjay Astro{{userDetails1}}</a>
+        <div id="close-sidebar">
           <i class="bi-x-lg"></i>
-        </div> 
+        </div>
       </div>
       <div class="sidebar-header">
-        <div class="user-pic">
-         <a ><img class="img-responsive " style="  border-radius: 50%;height: 68px;" src="{{imageSrc}}"  alt="User picture"></a> 
+        <div class="user-pic" (click)="userProfile()">
+          <a><img class="img-responsive "  style="  border-radius: 50%;height: 68px;" src="{{imageSrc}}"
+              alt="User picture"></a>
         </div>
-        <a><div class="user-info"  (click)="toggleMenu()">
-          <span class="user-name">
-            <strong>{{username}}</strong>
-          </span>
-          <span class="user-role">{{userrole}}</span>
-          <span class="user-status">
-            <i class="fa fa-circle"></i>
-            <span>Online</span>
-          </span>
-        </div></a>
-      
-      </div>
-      <!-- sidebar-header  -->
-      <!-- <div class="sidebar-search">
-        <div>
-          <div class="input-group">
-            <input type="text" class="form-control search-menu" placeholder="Search...">
-            <div class="input-group-append">
-              <span class="input-group-text">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </span>
-            </div>
+        <a>
+          <div class="user-info" (click)="toggleMenu()">
+            <span class="user-name">
+              <strong>{{username}}</strong>
+            </span>
+            <span class="user-role">{{userrole}}</span>
+            <span class="user-status">
+              <i class="fa fa-circle"></i>
+              <span>Online</span>
+            </span>
           </div>
-        </div>
-      </div> -->
-      <!-- sidebar-search  -->
-      <div class="sidebar-menu">
+        </a>
+
+      </div>
+    
+      <div class="sidebar-menu" *ngFor="let item of menulist">
         <ul>
-          <!-- <li class="header-menu">
-            <span>General</span>
-          </li> -->
           <li class="sidebar-dropdown">
-            <a >
-              <i class="fa fa-headphones"></i>
-              <span>Astro Services</span>
-              <!-- <span class="badge badge-pill badge-warning">New</span> -->
-            </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a >Services 1
-                    <span class="badge badge-pill badge-success">Pro</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Services 2</a>
-                </li>
-                <li>
-                  <a href="#">Services 3</a>
-                </li>
-              </ul>
-            </div>
-          </li>
-          <li class="sidebar-dropdown">
-            <a>
+            <a routerLink={{item.routerLink}} (click)="toggleMenu()">
               <i class="fa fa-shopping-cart"></i>
-              <span>Astro Shop</span>
+              <span >{{item.menuName}}</span>
               <!-- <span class="badge badge-pill badge-danger">3</span> -->
             </a>
-            <div class="sidebar-submenu">
+            <!-- <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a  routerLink="/product" (click)="toggleMenu()">Products
-
+                  <a routerLink="/product-list" (click)="toggleMenu()">Products
                   </a>
                 </li>
-               
-                
               </ul>
-            </div>
+            </div> -->
           </li>
-          <li class="sidebar-dropdown">
-            <!-- <a href="#">
+          <!-- <li class="sidebar-dropdown">
+            <a href="#">
               <i class="far fa-gem"></i>
               <span>Astrology Services</span>
-            </a> -->
+            </a>
             <div class="sidebar-submenu">
               <ul>
                 <li>
@@ -154,8 +120,8 @@
                 </li>
               </ul>
             </div>
-          </li>
-          <li class="sidebar-dropdown">
+          </li> -->
+          <!-- <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-globe"></i>
               <span>Puja & Homams</span>
@@ -176,8 +142,8 @@
                 </li>
               </ul>
             </div>
-          </li>
-          <li class="sidebar-dropdown">
+          </li> -->
+          <!-- <li class="sidebar-dropdown">
             <a href="#">
               <i class="fa fa-globe"></i>
               <span>Horoscope</span>
@@ -192,18 +158,34 @@
                 </li>
               </ul>
             </div>
-          </li>
+          </li> -->
+          <!-- <li class="sidebar-dropdown" *ngIf="customerMenuShow">
+            <a href="#">
+              <i class="fa fa-globe"></i>
+              <span>My Account</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a routerLink="/profile-editor" (click)="toggleMenu()">Edit Profile</a>
+                </li>
+                <li>
+                  <a href="#">Saved addresses</a>
+                </li>
+                <li>
+                  <a href="#">My Order</a>
+                </li>
+                <li>
+                  <a routerLink="/cart" (click)="toggleMenu()">My Cart</a>
+                </li>
+              </ul>
+            </div>
+          </li> -->
           <!-- <li class="header-menu">
             <span>Extra</span>
           </li> -->
-          <li>
-            <a href="#">
-              <i class="fa fa-book"></i>
-              <span>Kundali</span>
-
-            </a>
-          </li>
-          <li>
+         
+          <!-- <li>
             <a href="#">
               <i class="fa fa-calendar"></i>
               <span>Articles</span>
@@ -214,7 +196,7 @@
               <i class="fa fa-calendar"></i>
               <span>Gallery</span>
             </a>
-          </li>
+          </li> -->
           <!-- <li>
             <a href="#">
               <i class="fa fa-folder"></i>
@@ -222,9 +204,9 @@
             </a>
           </li> -->
         </ul>
-        
+
       </div>
-      
+
       <!-- sidebar-menu  -->
     </div>
     <!-- sidebar-content  -->
@@ -241,7 +223,7 @@
         <i class="fa fa-twitter"></i>
         <!-- <span class="badge-sonar"></span> -->
       </a>
-      <a routerLink="#" (click)="logout()">
+      <a routerLink="#" (click)="logout()" *ngIf="islogoutbtn">
         <i class="fa fa-power-off"></i>
       </a>
     </div>
@@ -253,18 +235,18 @@
       <div class="col-12
       "></div>
     </div> -->
-    
-   
+
+
     <br>
     <div style="height:20px; font-size:14px;">
       <marquee behavior="scroll" onmouseover="this.stop();" onmouseout="this.start();">
-<p  class="blu" style="color: red" > This website is under construction but We'll be back very soon:
-</p>    
-</marquee>
-</div>
-<br>
+        <p class="blu" style="color: red"> This website is under construction but We'll be back very soon:
+        </p>
+      </marquee>
+    </div>
+    <br>
     <div class="container-fluid">
-     
+
       <div id="carouselExampleCaptions" *ngIf="slidershow" class="carousel slide " data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -273,16 +255,15 @@
             aria-label="Slide 2"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
             aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
             aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
             aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"
             aria-label="Slide 3"></button>
         </div>
         <div class="carousel-inner">
-          <div class="carousel-item active"
-            style="background-image: url('../../assets/Slider_Img/Slider1.jpg')">
+          <div class="carousel-item active" style="background-image: url('../../assets/Slider_Img/Slider1.jpg')">
             <div class="carousel-caption">
               <h5>First slide label</h5>
               <p>Some representative placeholder content for the first slide.</p>
@@ -333,25 +314,29 @@
 
 
       <!-- Page Content -->
-      
-        <div class="container">
-        
-          <!-- <h1 class="fw-light">Half Page Image Slider</h1>
+
+      <div class="container">
+
+        <!-- <h1 class="fw-light">Half Page Image Slider</h1>
           <p class="lead">The background images for the slider are set directly in the HTML using inline CSS. The images
             in this snippet are from <a href="https://unsplash.com">Unsplash</a>!</p> -->
-          <router-outlet></router-outlet>
-        
-        </div>
-      
+        <router-outlet></router-outlet>
+
+      </div>
+
     </div>
-  </main>
+    <div *ngIf="isbloglist">
+      <app-blog-list></app-blog-list>
+    </div>
+   
+  </main><app-footer></app-footer>
   <!-- page-content" -->
 </div>
 <script type="text/javascript" src="//100widgets.com/js_data.php?id=204"></script>
 <a href="https://wa.me/+918077927676" class="float" target="_blank">
   <i class="fa fa-whatsapp my-float"></i>
 </a>
-<a href="https://www.facebook.com/profile.php?id=100080650452489" class="facebook" target="_blank">
+<!-- <a href="https://www.facebook.com/profile.php?id=100080650452489" class="facebook" target="_blank">
   <i class="fa fa-facebook my-float"></i>
 </a>
 <a href="https://instagram.com/pt.sanjay_shastri?igshid=YmMyMTA2M2Y=" class="instagram" target="_blank">
@@ -359,7 +344,7 @@
 </a>
 <a href="https://twitter.com/PtSanjaySharm13?t=cK5lHO_qVx8YOvxe5TgMqQ&s=08" class="twitter" target="_blank">
   <i class="fa fa-twitter my-float"></i>
-</a>
+</a> -->
 <div class="loading-overlay is-active" *ngIf="loading">
   <span class="fa fa-spinner fa-3x fa-spin"></span>
 </div>

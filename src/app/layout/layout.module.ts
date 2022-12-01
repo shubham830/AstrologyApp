@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     SliderComponent,
     ModalComponent,
-    MultipleCardPostComponent,
+    MultipleCardPostComponent
   ],
   exports: [SliderComponent],
 

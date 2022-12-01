@@ -1,0 +1,27 @@
+<div class="container">
+	<h1>Welcome Administrator</h1>
+
+	<a class="btn btn-primary float-right" href="/admin/blog/new">Add Post</a>
+
+	<div style="overflow-x: auto;">
+		<table class="table table-hover table-wrapper-scroll-x">
+			<thead>
+				<tr class="">
+					<th scope="col">Title</th>
+					<th scope="col">URL</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let post of posts">
+					<td>{{post.Title}}</td>
+					<td>{{post.Description}}</td>
+					<td>
+						<i class="fa fa-edit post-action post-edit-icon" (click)="onEdit(post.ArticleId)"></i>&nbsp;
+						<i class="fa fa-trash post-action post-delete-icon" (click)="onDelete(post.ArticleId)"></i>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

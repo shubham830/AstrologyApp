@@ -1,0 +1,14 @@
+.posts {
+  /* margin: 0 32px;  */
+  margin: 32px 0;
+}
+
+.post-action {
+  cursor: pointer;
+}
+.post-edit-icon{
+  color: green;
+}
+.post-delete-icon{
+  color: red;
+}
