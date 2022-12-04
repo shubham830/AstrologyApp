@@ -490,17 +490,17 @@
   }
   .float {
     position:fixed;
-    width:37px;
-    height:41px;
-    bottom:8px;
-    right:3px;
-    background-color:#25d366;
-    color:#FFF;
-    border-radius:50px;
-    text-align:center;
-    font-size:30px;
-    box-shadow: 2px 2px 3px #999;
-    z-index:100;
+	width:60px;
+	height:60px;
+	bottom:7px;
+	right:9px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
   }
   .facebook {
     position:fixed;
@@ -547,7 +547,7 @@
     z-index:100;
   }
   .my-float{
-    margin-top:8px;
+    margin-top:16px;
   }
   a:hover {
     cursor:pointer;
@@ -576,4 +576,18 @@
     z-index: 1020;
   }
   
-  
+  @media screen and (min-width: 1200px){
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1475px;
+  }
+  }
+  .fa-stack {
+    position: relative;
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    vertical-align: middle;
+    margin-top: -12px;
+}
+

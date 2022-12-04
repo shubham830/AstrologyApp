@@ -14,15 +14,16 @@
 <!-- <h4 class="text-center">Product List</h4> -->
 <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
     <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-      <div *ngIf="posts.length== 0">No Post Available</div>
+    
       <div class="col hp" *ngFor=" let post of posts">
         <div class="card h-100 shadow-sm">
           <a >
-            <img [src]="getImg(post.Description)" class="card-img-top" alt="post.title" />
+        
+            <img  width="186px"  class="card-img-top"   [src]="getImage(post.image_path,post.image_type)" alt="">
           </a>
           <div class="card-body">
             <div class="clearfix mb-3">
-              <span class="float-start badge rounded-pill bg-success">{{post.Title}}</span>
+              <span class="float-start badge rounded-pill bg-success">{{post.title}}</span>
             </div>
             <!-- <h5 class="card-title">
               <a target="_blank" href="#"> </a>
@@ -31,14 +32,16 @@
   
             <div class="d-grid gap-2 my-4">
            
-				<a class=" text-info" (click)="countinue(post.ArticleId)" >Continue Reading</a>
+				<a class=" text-info" (click)="countinue(post.article_id)" >Continue Reading</a>
               <!-- <a  class="btn btn-warning bold-btn" >add to cart</a> -->
             </div>
-           
+           <div class="col-12" style="text-align: right;">       <label>{{post.CreateDt | date }}</label></div>
+    
           </div>
         </div>
       </div>
      
     </div>
+    <div *ngIf="posts.length == 0" class="text-center">No Data Found</div>
   </div>
   

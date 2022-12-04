@@ -76,6 +76,8 @@ export class RegisterComponent implements OnInit {
         this.toastrService.success( massage.toString());
         // Swal.fire(massage.toString());
         this.data = true;
+        this.registerForm.reset();
+        window.location.reload();
         this.isHeaderTitle.emit("close");
       });
 
@@ -97,6 +99,8 @@ export class RegisterComponent implements OnInit {
           this.timer(2);
         } else {
           this.toastrService.error(massage.toString());
+          this.registerForm.reset();
+          
         }
       });
   }

@@ -36,7 +36,13 @@ export class PostService {
     return this.http.delete<any>((this.Url + 'DeleteArticle/' + id));
   }
 
-
+publishPost(id:any){
+  
+  return this.http.get<any>(this.Url + 'PublishArticle/' + id)
+}
+unPublishPost(id:any){
+  return this.http.get<any>(this.Url + 'UnPublishArticle/' + id)
+}
   updatePost(post:Content) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post<Content[]>(this.Url + 'UpdateArticle', post, httpOptions);

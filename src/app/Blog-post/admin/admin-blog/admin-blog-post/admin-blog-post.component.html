@@ -2,14 +2,26 @@
 	<form [formGroup]="postForm" (ngSubmit)="onSubmit(postForm.value)">
 		<div class="mb-3">
 			<input formControlName="Title" [class.is-invalid]="titleField.touched && titleField.invalid" type="title"
-				placeholder="Title" class="form-control" id="id_title" [(ngModel)]="contentdata.Title">
+				placeholder="Title" class="form-control" id="id_title" [(ngModel)]="contentdata.title">
 			<div *ngIf="titleField.touched && titleField.hasError('required')" class="d-block invalid-feedback">
 				Please
 				provide a Title</div>
 		</div>
 		<div class="mb-3">
+			
+				<!-- Profile picture image-->
+				<img class="img-account-profile  " width="186px" src="{{imageUrl}}" alt="">
+				<!-- Profile picture help block-->
+				<div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+				<!-- Profile picture upload button-->
+				<input #Image type="file" (change)="handleFileInput($event)" />
+				<br>
+				<!-- <img width="100%" *ngIf="imageUrl" [src]="imageUrl" class="image"> -->
+		
+		</div>
+		<div class="mb-3">
 			<angular-editor formControlName="Description" [placeholder]="'Enter text here...'" [config]="config"
-				[(ngModel)]="contentdata.Description"></angular-editor>
+				[(ngModel)]="contentdata.description"></angular-editor>
 		</div>
 		<div class="buttons">
 			<button [disabled]="postForm.invalid" type="submit" class="btn btn-primary">Save</button>
@@ -17,3 +29,4 @@
 		</div>
 	</form>
 </div>
+<br>

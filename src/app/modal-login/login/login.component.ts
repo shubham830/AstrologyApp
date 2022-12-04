@@ -111,6 +111,7 @@ export class LoginComponent implements OnInit {
   }
 
   onheader(register: any) {
+    
     this.loginForm.reset();
     register.class = "sticky-top"
     this.userDetails.emit(register.class)

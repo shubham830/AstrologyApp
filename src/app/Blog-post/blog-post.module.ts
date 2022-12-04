@@ -24,20 +24,24 @@ import { AdminBlogComponent } from './admin/admin-blog/admin-blog.component';
 import { AdminBlogPostComponent } from '../Blog-post/admin/admin-blog/admin-blog-post/admin-blog-post.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { sanitizeHtmlPipe } from '../pipe';
+
+
 
 @NgModule({
   imports: [
     BrowserModule,
-    ReactiveFormsModule, FormsModule,AngularEditorModule 
+    ReactiveFormsModule, FormsModule,AngularEditorModule ,NgbTooltipModule,
     
   ],
   declarations: [
-     BlogComponent, BlogListComponent, BlogPostComponent, AdminBlogComponent, AdminBlogPostComponent
+     BlogComponent, BlogListComponent, BlogPostComponent, AdminBlogComponent, AdminBlogPostComponent,sanitizeHtmlPipe
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],
-  exports: [BlogListComponent],
+  exports: [BlogListComponent, sanitizeHtmlPipe ],
   providers: [PostService]
 })
 export class BlogPostModule { }

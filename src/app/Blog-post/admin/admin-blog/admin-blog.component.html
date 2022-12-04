@@ -1,27 +1,32 @@
 <div class="container">
-	<h1>Welcome Administrator</h1>
+	
 
-	<a class="btn btn-primary float-right" href="/admin/blog/new">Add Post</a>
-
+	<!-- <a class="btn btn-primary float-right" >Add Post</a> -->
+	<a style="border-radius: 1.375rem;" href="/admin/blog/new"class="btn btn-info add-new btn-rounded" ><i class="fa fa-plus"></i>&nbsp;Add Post</a>
+<br>
 	<div style="overflow-x: auto;">
 		<table class="table table-hover table-wrapper-scroll-x">
 			<thead>
 				<tr class="">
 					<th scope="col">Title</th>
-					<th scope="col">URL</th>
 					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let post of posts">
-					<td>{{post.Title}}</td>
-					<td>{{post.Description}}</td>
+					<td>{{post.title}}</td>
 					<td>
-						<i class="fa fa-edit post-action post-edit-icon" (click)="onEdit(post.ArticleId)"></i>&nbsp;
-						<i class="fa fa-trash post-action post-delete-icon" (click)="onDelete(post.ArticleId)"></i>
+						
+						<i class="fa fa-edit post-action post-edit-icon" placement="top" ngbTooltip="Edit Post" (click)="onEdit(post.article_id)"></i>&nbsp;
+						<i class="fa fa-trash post-action post-delete-icon" placement="top" ngbTooltip="Delete Post" (click)="onDelete(post.article_id)"></i>&nbsp;
+						<i class="fa fa-eye" placement="top" ngbTooltip="View Post" (click)="onViewPost(post.article_id)"></i>&nbsp;
+						<i class="fa fa-telegram" placement="top" ngbTooltip="Publish Post" (click)="onPublish(post.article_id)"></i>&nbsp;
+						<i class="fa fa-telegram" placement="top" ngbTooltip="UnPublish Post" (click)="onUnPublish(post.article_id)"></i>&nbsp;
 					</td>
 				</tr>
 			</tbody>
 		</table>
+		<div *ngIf="posts.length == 0" class="text-center">No Data Found</div>
 	</div>
 </div>
+<br>

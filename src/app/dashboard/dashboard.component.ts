@@ -44,26 +44,27 @@ export class DashboardComponent implements OnInit {
   isloginbtn:boolean =true;
   islogoutbtn:boolean = false;
   isbloglist:boolean | undefined;
+  imageSrcH = '~/../assets/hanuman ji.png';
   // Component
  menulist :any;
   mainMenuList = [
-  { id:1, menuName:'Astro Shop', routerLink:'/product-list', menuPermission:"C" },
-  { id:2, menuName:'My Order', routerLink:'' ,menuPermission:"C"},
-  { id:3, menuName:'Edit Profile', routerLink:'/profile-editor', menuPermission:"C" },
-  { id:4, menuName:'Saved addresses', routerLink:'/profile-editor' ,menuPermission:"C"},
-  { id:5, menuName:'Notification', routerLink:'/profile-editor',menuPermission:"C" },
-  { id:6, menuName:'Gallery', routerLink:'/gallery',menuPermission:"C" },
+  { id:1, menuName:'Astro Shop', routerLink:'/product-list', icon:'fa fa-shopping-cart', menuPermission:"C" },
+  { id:2, menuName:'My Order', routerLink:'',icon:'fa fa-shopping-cart', menuPermission:"C"},
+  { id:3, menuName:'Edit Profile', routerLink:'/profile-editor', icon:'fa fa-user', menuPermission:"C" },
+  { id:4, menuName:'Saved addresses', routerLink:'/profile-editor', icon:'', menuPermission:"C"},
+  { id:5, menuName:'Notification', routerLink:'/profile-editor', icon:'fa fa-bell', menuPermission:"C" },
+  { id:6, menuName:'Gallery', routerLink:'/gallery', icon:'fa fa-picture-o', menuPermission:"C" },
  
-  { id:7, menuName:'Edit Profile', routerLink:'/cart',menuPermission:"A" },
-  { id:8, menuName:'Products', routerLink:'/admin',menuPermission:"A" },
-  { id:9, menuName:'Orders', routerLink:'/cart',menuPermission:"A" },
-  { id:10, menuName:'Post', routerLink:'/cart',menuPermission:"A" },
-  { id:11, menuName:'Discounts', routerLink:'/cart',menuPermission:"A" },
-  { id:12, menuName:'Notification', routerLink:'/profile-editor',menuPermission:"A" },
+  // { id:7, menuName:'Edit Profile', routerLink:'/cart', icon:'fa fa-user', menuPermission:"A" },
+  { id:8, menuName:'Products', routerLink:'/product-list', icon:'fa fa-product-hunt', menuPermission:"A" },
+  { id:9, menuName:'Orders', routerLink:'/cart' , icon:'fa fa-shopping-cart', menuPermission:"A" },
+  { id:10, menuName:'Post', routerLink:'/admin', icon:'fa fa-sticky-note-o', menuPermission:"A" },
+  { id:11, menuName:'Discounts', routerLink:'/cart', icon:'fa fa-percent', menuPermission:"A" },
+  { id:12, menuName:'Notification', routerLink:'/profile-editor', icon:'fa fa-bell', menuPermission:"A" },
 
-  { id:13, menuName:'Astro Shop', routerLink:'/product-list',menuPermission:"D" },
-  { id:14, menuName:'Article', routerLink:'/AdminBlogComponent',menuPermission:"D" },
-  { id:15, menuName:'Gallery', routerLink:'/gallery',menuPermission:"D" },
+  { id:13, menuName:'Astro Shop', routerLink:'/product-list', icon:'fa fa-shopping-cart', menuPermission:"D" },
+  { id:14, menuName:'Article', routerLink:'/AdminBlogComponent', icon:'fa fa-pencil', menuPermission:"D" },
+  { id:15, menuName:'Gallery', routerLink:'/gallery', icon:'fa fa-picture-o', menuPermission:"D" },
 ]
 
   

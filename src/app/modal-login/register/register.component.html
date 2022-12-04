@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm" (ngSubmit)="onFormSubmit1(registerForm.value)">
+<form [formGroup]="registerForm"  #myForm="ngForm" (ngSubmit)="onFormSubmit1(registerForm.value)">
   <div *ngIf="isRegisterItem">
     <div class="mb-3">
    

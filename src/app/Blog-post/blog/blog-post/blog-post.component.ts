@@ -15,7 +15,7 @@ export class BlogPostComponent implements OnInit {
   post:Content | undefined;
   id:any;
   count:any = 0;
-
+  imageUrl:any;
   constructor(private route: ActivatedRoute, private router: Router, private postService: PostService) { }
 
   ngOnInit() {
@@ -48,6 +48,7 @@ likeBtn!.addEventListener("click", () => {
     this.postService.getPostById(articleId).subscribe(
       data => {
         this.post = data
+        this.imageUrl = 'data:image/' + data.image_type.substring(1) +';base64,' + data.image_path;
       },
       error => {
       });

@@ -11,13 +11,17 @@
         <div class="col-3 col-md-1" *ngIf="isloginbtn">
           <app-login (userDetails)="doSomething($event)"></app-login>
         </div>
-        <div class="col-1 col-md-1"><div><i class="fa fa-home" routerLink="/" (click)="home()" aria-hidden="true"></i> </div> </div>
-        <div class="col-2 col-md-1"> <a style="color: black;" routerLink="/cart"> <span class="fa-stack fa-1x data"
+        <!-- <div class="col-1 col-md-1"><div> </div> </div> -->
+        <div class="col-3 col-md-2"> <i class="fa fa-home" style="font-size: 31px;cursor: pointer;" routerLink="/" (click)="home()" aria-hidden="true"></i><a style="color: black;" routerLink="/cart"> <span class="fa-stack fa-1x data"
               [attr.data-count]="(items$ | async)?.length || count">
               <i class="fa fa-circle fa-stack-2x"></i>
               <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
-            </span></a></div>
-         
+            </span></a>
+          
+              <!-- <img class="rounded-circle" (click)="userProfile()"style="width: 33px;" alt="avatar1" src="https://mdbcdn.b-cdn.net/img/new/avatars/9.webp" /> -->
+           
+          </div>
+           
       </div>
 
     </div>
@@ -83,7 +87,7 @@
         <ul>
           <li class="sidebar-dropdown">
             <a routerLink={{item.routerLink}} (click)="toggleMenu()">
-              <i class="fa fa-shopping-cart"></i>
+              <i class={{item.icon}}></i>
               <span >{{item.menuName}}</span>
               <!-- <span class="badge badge-pill badge-danger">3</span> -->
             </a>
@@ -238,13 +242,16 @@
 
 
     <br>
+    <br>
+    <br>
+   
     <div style="height:20px; font-size:14px;">
       <marquee behavior="scroll" onmouseover="this.stop();" onmouseout="this.start();">
-        <p class="blu" style="color: red"> This website is under construction but We'll be back very soon:
+        <p class="blu" style="color: red"> <img src={{imageSrcH}} style="height: 51px;"/>This website is under construction but We'll be back very soon:
         </p>
       </marquee>
     </div>
-    <br>
+    <br><br>
     <div class="container-fluid">
 
       <div id="carouselExampleCaptions" *ngIf="slidershow" class="carousel slide " data-bs-ride="carousel">
@@ -332,19 +339,11 @@
   </main><app-footer></app-footer>
   <!-- page-content" -->
 </div>
-<script type="text/javascript" src="//100widgets.com/js_data.php?id=204"></script>
+
 <a href="https://wa.me/+918077927676" class="float" target="_blank">
   <i class="fa fa-whatsapp my-float"></i>
-</a>
-<!-- <a href="https://www.facebook.com/profile.php?id=100080650452489" class="facebook" target="_blank">
-  <i class="fa fa-facebook my-float"></i>
-</a>
-<a href="https://instagram.com/pt.sanjay_shastri?igshid=YmMyMTA2M2Y=" class="instagram" target="_blank">
-  <i class="fa fa-instagram my-float"></i>
-</a>
-<a href="https://twitter.com/PtSanjaySharm13?t=cK5lHO_qVx8YOvxe5TgMqQ&s=08" class="twitter" target="_blank">
-  <i class="fa fa-twitter my-float"></i>
-</a> -->
+  </a>
+
 <div class="loading-overlay is-active" *ngIf="loading">
   <span class="fa fa-spinner fa-3x fa-spin"></span>
 </div>
